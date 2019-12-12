@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>475</width>
     <height>350</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>600</width>
+    <width>475</width>
     <height>350</height>
    </size>
   </property>
@@ -156,6 +156,9 @@
      </item>
      <item row="8" column="3" colspan="2">
       <widget class="QPushButton" name="loadButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Load from file</string>
        </property>
@@ -173,6 +176,9 @@
      </item>
      <item row="8" column="0" colspan="2">
       <widget class="QPushButton" name="saveButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Save to file</string>
        </property>
@@ -250,7 +256,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>475</width>
      <height>26</height>
     </rect>
    </property>

@@ -33,6 +33,10 @@ private slots:
 
     void on_keyToFind_textChanged(const QString &arg1);
 
+    void on_clearTable_clicked();
+    
+    void on_fileNameEdit_textChanged(const QString &arg1);
+    
 private:
 
     void fillListWidget();

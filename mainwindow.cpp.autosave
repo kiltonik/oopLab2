@@ -85,6 +85,13 @@ void MainWindow::on_findButton_clicked()
     ui->findButton->setDisabled(true);
 }
 
+void MainWindow::on_clearTable_clicked()
+{
+    ui->listWidget->clear();
+    this->hashTable.clear();
+    ui->clearTable->setDisabled(true);
+}
+
 void MainWindow::on_keyToAdd_textChanged(const QString &text)
 {
     if (!text.isEmpty() && !ui->valueToAdd->text().isEmpty()) ui->addButton
@@ -109,4 +116,16 @@ void MainWindow::on_keyToFind_textChanged(const QString &text)
 {
     if (!text.isEmpty()) ui->findButton->setEnabled(true);
     else ui->findButton->setDisabled(true);
+}
+
+void MainWindow::on_fileNameEdit_textChanged(const QString &text)
+{
+    if(!text.isEmpty()){
+        ui->saveButton->setEnabled(true);
+        ui->loadButton->setEnabled(true);
+    }
+    else{
+        ui->saveButton->setDisabled(true);
+        ui->loadButton->setDisabled(true);
+    }
 }
