@@ -85,6 +85,30 @@ void MainWindow::on_findButton_clicked()
     ui->findButton->setDisabled(true);
 }
 
+void MainWindow::on_clearTable_clicked()
+{
+    ui->listWidget->clear();
+    this->hashTable.clear();
+    ui->clearTable->setDisabled(true);
+}
+
+void MainWindow::on_saveButton_clicked()
+{
+    QString fileName = ui->fileNameEdit->text();
+    ui->fileNameEdit->clear();
+
+    this->hashTable.writeToFile(fileName);
+}
+
+void MainWindow::on_loadButton_clicked()
+{
+    QString fileName = ui->fileNameEdit->text();
+    ui->fileNameEdit->clear();
+    ui->listWidget->clear();
+    this->hashTable.readFromFile(fileName);
+    this->fillListWidget();
+}
+
 void MainWindow::on_keyToAdd_textChanged(const QString &text)
 {
     if (!text.isEmpty() && !ui->valueToAdd->text().isEmpty()) ui->addButton
@@ -109,4 +133,16 @@ void MainWindow::on_keyToFind_textChanged(const QString &text)
 {
     if (!text.isEmpty()) ui->findButton->setEnabled(true);
     else ui->findButton->setDisabled(true);
+}
+
+void MainWindow::on_fileNameEdit_textChanged(const QString &text)
+{
+    if(!text.isEmpty()){
+        ui->saveButton->setEnabled(true);
+        ui->loadButton->setEnabled(true);
+    }
+    else{
+        ui->saveButton->setDisabled(true);
+        ui->loadButton->setDisabled(true);
+    }
 }
