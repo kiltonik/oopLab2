@@ -64,18 +64,21 @@ HashTable<T,U>::HashTable(const HashTable &hashTable){
     this->totalValue = hashTable.totalValue;
 }
 
-//template <typename T, typename U>
-//unsigned int HashTable<T, U>::getIndexByHash(T &key){
-//    unsigned int h = 0;
-//    foreach(auto p, key){
-//        h = h * 31 + static_cast<unsigned int>(p);
+template <typename T, typename U>
+unsigned int HashTable<T, U>::getIndexByHash(T &key) const{
+    unsigned int h = 0;
+    foreach(auto p, key){
+        h = h * 31 + static_cast<unsigned int>(p);
 
-//    }
-//    return h % MAX_SIZE;
-//}
+    }
+    return h % MAX_SIZE;
+}
 
-//template<>
-//unsigned int HashTable<QString, int>::getIndexByHash(QString &key){
+template<>
+unsigned int HashTable<QString, int>::getIndexByHash(QString &key) const;
+
+//template<typename T, typename U>
+//unsigned int HashTable<T, U>::getIndexByHash(T &key) const{
 //    unsigned int h = 0;
 //    foreach(auto p, key){
 //        unsigned int t = 0;
@@ -85,18 +88,6 @@ HashTable<T,U>::HashTable(const HashTable &hashTable){
 //    }
 //    return h % MAX_SIZE;
 //}
-
-template<typename T, typename U>
-unsigned int HashTable<T, U>::getIndexByHash(T &key) const{
-    unsigned int h = 0;
-    foreach(auto p, key){
-        unsigned int t = 0;
-        t = p.unicode();
-        h = h * 31 + t;
-
-    }
-    return h % MAX_SIZE;
-}
 
 
 template <typename T, typename U>
@@ -182,39 +173,19 @@ void HashTable<T,U>::writeToFile(QString& fileName) const{
     file.close();
 }
 
-//template <>
-//void HashTable<std::string,int>::readFromFile(QString &fileName){
-//    this->clear();
-//    QFile file(fileName+".json");
-//    if (!file.open(QIODevice::ReadOnly)) return;
-//    QJsonObject temp = QJsonDocument::fromJson(file.readAll()).object();
-//    for(const auto& i: temp.keys()){
-//        QJsonObject object = temp.value(i).toObject();
-//        std::string key = object["key"].toString().toStdString();
-//        int value = object["value"].toInt();
-//        this->add(key, value);
-//    }
-//    file.close();
-//}
-
-template<typename T, typename U>
+template <typename T, typename U>
 void HashTable<T,U>::readFromFile(QString &fileName){
     this->clear();
-
     QFile file(fileName+".json");
     if (!file.open(QIODevice::ReadOnly)) return;
     QJsonObject temp = QJsonDocument::fromJson(file.readAll()).object();
-
     for(const auto& i: temp.keys()){
         QJsonObject object = temp.value(i).toObject();
         QString key = object["key"].toString();
         int value = object["value"].toInt();
         this->add(key, value);
-        this->totalValue += value;
     }
-
     file.close();
-
 }
 
 template <typename T, typename U>

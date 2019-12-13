@@ -37,7 +37,7 @@ private slots:
 
     void on_fileNameEdit_textChanged(const QString &arg1);
 
-    void on_saveButton_clicked();
+    void on_saveButton_clicked() const;
 
     void on_loadButton_clicked();
 

@@ -90,9 +90,10 @@ void MainWindow::on_clearTable_clicked()
     ui->listWidget->clear();
     this->hashTable.clear();
     ui->clearTable->setDisabled(true);
+    ui->totalValue->setText(QString::number(0));
 }
 
-void MainWindow::on_saveButton_clicked()
+void MainWindow::on_saveButton_clicked() const
 {
     QString fileName = ui->fileNameEdit->text();
     ui->fileNameEdit->clear();
